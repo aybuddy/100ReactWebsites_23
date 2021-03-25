@@ -19,9 +19,9 @@ Update on this challenge:
 
 # 100 React Websites #23
 
-Source: Clever Programmer
+Source: MERN Fullstack Guide - Max 
 
-https://www.youtube.com/watch?v=g8yGxDMyGiE
+Udemy: https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/
 
-TikTok clone MERN (MongoDb, Express, React, Node) Stack App.
+MERN stack app
 
