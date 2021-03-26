@@ -1,11 +1,29 @@
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
-function App() {
+import './App.css';
+import NewPlace from './places/pages/NewPlace';
+import Users from './user/pages/Users';
+
+const App = () => {
   return (
-    <div className='app'>
-      <h1>MERN App</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route path='/places/new' exact>
+          <NewPlace />
+        </Route>
+        <Route exact path='/'>
+          <Users />
+        </Route>
+        <Redirect to='/' />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
