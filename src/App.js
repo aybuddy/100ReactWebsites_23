@@ -6,22 +6,25 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import './App.css';
 import NewPlace from './places/pages/NewPlace';
+import MainNavigation from './shared/components/Navigation/MainNavigation';
 import Users from './user/pages/Users';
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path='/places/new' exact>
-          <NewPlace />
-        </Route>
-        <Route exact path='/'>
-          <Users />
-        </Route>
-        <Redirect to='/' />
-      </Switch>
+      <MainNavigation />
+      <main>
+        <Switch>
+          <Route path='/places/new' exact>
+            <NewPlace />
+          </Route>
+          <Route exact path='/'>
+            <Users />
+          </Route>
+          <Redirect to='/' />
+        </Switch>
+      </main>
     </Router>
   );
 };
