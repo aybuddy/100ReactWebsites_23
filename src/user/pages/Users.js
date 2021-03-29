@@ -12,11 +12,7 @@ const Users = () => {
     },
   ];
 
-  return (
-    <div>
-      <UsersList items={USERS} />
-    </div>
-  );
+  return <UsersList items={USERS} />;
 };
 
 export default Users;
