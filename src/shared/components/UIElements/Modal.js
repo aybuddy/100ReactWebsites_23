@@ -29,7 +29,7 @@ const ModalOverlay = (props) => {
 
 const Modal = (props) => {
   return (
-    <>
+    <React.Fragment>
       {props.show && <Backdrop onClick={props.onCancel} />}
       <CSSTransition
         in={props.show}
@@ -40,7 +40,7 @@ const Modal = (props) => {
       >
         <ModalOverlay {...props} />
       </CSSTransition>
-    </>
+    </React.Fragment>
   );
 };
 

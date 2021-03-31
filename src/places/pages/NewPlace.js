@@ -4,6 +4,8 @@ import './PlaceForm.css';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
@@ -11,8 +13,6 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 const NewPlace = () => {
   const auth = useContext(AuthContext);
@@ -64,15 +64,15 @@ const NewPlace = () => {
           id='title'
           element='input'
           type='text'
-          label='title'
+          label='Title'
           validators={[VALIDATOR_REQUIRE()]}
-          errorText='Please enter a valid title'
+          errorText='Please enter a valid title.'
           onInput={inputHandler}
         />
         <Input
           id='description'
           element='textarea'
-          label='description'
+          label='Description'
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText='Please enter a valid description (at least 5 characters)'
           onInput={inputHandler}
@@ -80,7 +80,7 @@ const NewPlace = () => {
         <Input
           id='address'
           element='input'
-          label='address'
+          label='Address'
           validators={[VALIDATOR_REQUIRE()]}
           errorText='Please enter a valid address'
           onInput={inputHandler}

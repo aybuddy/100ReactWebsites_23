@@ -17,7 +17,7 @@ import { AuthContext } from '../../shared/context/auth-context';
 const UpdatePlace = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [loadedPlace, setLoadedPlace] = useState(undefined);
+  const [loadedPlace, setLoadedPlace] = useState();
   const placeId = useParams().placeId;
   const history = useHistory();
 
@@ -41,6 +41,7 @@ const UpdatePlace = () => {
         const responseData = await sendRequest(
           `http://localhost:5000/api/places/${placeId}`
         );
+        setLoadedPlace(responseData.place);
         setFormData(
           {
             title: {
