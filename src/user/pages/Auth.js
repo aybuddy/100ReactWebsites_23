@@ -2,9 +2,10 @@ import React, { useState, useContext } from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
 import Input from '../../shared/components/FormElements/Input';
+import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import Button from '../../shared/components/FormElements/Button';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -14,7 +15,6 @@ import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import './Auth.css';
-import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 
 const Auth = () => {
   const auth = useContext(AuthContext);
@@ -67,8 +67,6 @@ const Auth = () => {
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
-    console.log(formState.inputs);
-
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
@@ -78,7 +76,9 @@ const Auth = () => {
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
           }),
-          { 'Content-Type': 'application/json' }
+          {
+            'Content-Type': 'application/json',
+          }
         );
         auth.login(responseData.userId, responseData.token);
       } catch (err) {}
@@ -115,7 +115,7 @@ const Auth = () => {
               type='text'
               label='Your Name'
               validators={[VALIDATOR_REQUIRE()]}
-              errorText='Please enter a name'
+              errorText='Please enter a name.'
               onInput={inputHandler}
             />
           )}
@@ -124,25 +124,25 @@ const Auth = () => {
               center
               id='image'
               onInput={inputHandler}
-              error='Please provide an image'
+              errorText='Please provide an image.'
             />
           )}
           <Input
             element='input'
+            id='email'
             type='email'
             label='E-Mail'
-            id='email'
             validators={[VALIDATOR_EMAIL()]}
-            errorText='Pleaes enter a valid email'
+            errorText='Please enter a valid email address.'
             onInput={inputHandler}
           />
           <Input
             element='input'
+            id='password'
             type='password'
             label='Password'
-            id='password'
             validators={[VALIDATOR_MINLENGTH(6)]}
-            errorText='Pleaes enter a valid password'
+            errorText='Please enter a valid password, at least 6 characters.'
             onInput={inputHandler}
           />
           <Button type='submit' disabled={!formState.isValid}>
@@ -150,7 +150,7 @@ const Auth = () => {
           </Button>
         </form>
         <Button inverse onClick={switchModeHandler}>
-          Switch to {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+          SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
         </Button>
       </Card>
     </React.Fragment>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './UserItem.css';
+
 import Avatar from '../../shared/components/UIElements/Avatar';
 import Card from '../../shared/components/UIElements/Card';
+import './UserItem.css';
 
 const UserItem = (props) => {
   return (
@@ -12,7 +13,7 @@ const UserItem = (props) => {
           <div className='user-item__image'>
             <Avatar
               image={`http://localhost:5000/${props.image}`}
-              alt={props.image}
+              alt={props.name}
             />
           </div>
           <div className='user-item__info'>

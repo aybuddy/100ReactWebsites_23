@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+
 import Button from '../../shared/components/FormElements/Button';
 import Input from '../../shared/components/FormElements/Input';
+import Card from '../../shared/components/UIElements/Card';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from '../../shared/util/validators';
-import './PlaceForm.css';
 import { useForm } from '../../shared/hooks/form-hook';
-import Card from '../../shared/components/UIElements/Card';
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import { AuthContext } from '../../shared/context/auth-context';
+import './PlaceForm.css';
 
 const UpdatePlace = () => {
   const auth = useContext(AuthContext);
@@ -91,7 +92,7 @@ const UpdatePlace = () => {
     return (
       <div className='center'>
         <Card>
-          <h2>Could not Find Place</h2>
+          <h2>Could not find place!</h2>
         </Card>
       </div>
     );
@@ -106,9 +107,9 @@ const UpdatePlace = () => {
             id='title'
             element='input'
             type='text'
-            label='title'
+            label='Title'
             validators={[VALIDATOR_REQUIRE()]}
-            errorText='Please enter a valid title title'
+            errorText='Please enter a valid title.'
             onInput={inputHandler}
             initialValue={loadedPlace.title}
             initialValid={true}
@@ -116,15 +117,15 @@ const UpdatePlace = () => {
           <Input
             id='description'
             element='textarea'
-            label='description'
+            label='Description'
             validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText='Please enter a valid description (min 5 characters)'
+            errorText='Please enter a valid description (min. 5 characters)'
             onInput={inputHandler}
             initialValue={loadedPlace.description}
             initialValid={true}
           />
           <Button type='submit' disabled={!formState.isValid}>
-            Update Place
+            UPDATE PLACE
           </Button>
         </form>
       )}

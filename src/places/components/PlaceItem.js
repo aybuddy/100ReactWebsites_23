@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
-import './PlaceItem.css';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import Modal from '../../shared/components/UIElements/Modal';
 import Map from '../../shared/components/UIElements/Map';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+
+import './PlaceItem.css';
 
 const PlaceItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -55,22 +56,22 @@ const PlaceItem = (props) => {
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
-        header='Are You Sure?'
+        header='Are you sure?'
         footerClass='place-item__modal-actions'
         footer={
           <React.Fragment>
             <Button inverse onClick={cancelDeleteHandler}>
-              Cancel
+              CANCEL
             </Button>
             <Button danger onClick={confirmDeleteHandler}>
-              Delete
+              DELETE
             </Button>
           </React.Fragment>
         }
       >
         <p>
-          Do you want to proceed and delete this place? Please not this action
-          can't be undone.
+          Do you want to proceed and delete this place? Please note that it
+          can't be undone thereafter.
         </p>
       </Modal>
       <li className='place-item'>
@@ -89,15 +90,15 @@ const PlaceItem = (props) => {
           </div>
           <div className='place-item__actions'>
             <Button inverse onClick={openMapHandler}>
-              View On Map
+              VIEW ON MAP
             </Button>
             {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>Edit</Button>
+              <Button to={`/places/${props.id}`}>EDIT</Button>
             )}
 
             {auth.userId === props.creatorId && (
               <Button danger onClick={showDeleteWarningHandler}>
-                Delete
+                DELETE
               </Button>
             )}
           </div>
